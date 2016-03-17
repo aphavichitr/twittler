@@ -7,6 +7,7 @@
     <title>Twittler by Andrew Phavichitr</title>
   </head>
   <body>
+    <h1>Twittler by Andrew Phavichitr</h1>
     <script>
 
       $(document).ready(function(){
@@ -15,20 +16,22 @@
           var now = new Date();
           var hours = now.getHours() % 12 || 12;
           var ampm = hours >= 12 ? 'PM' : 'AM';
-          return hours + ':' + now.getMinutes() + ":" + now.getSeconds() + ampm + " - " + now.getDate() + " " + month[now.getMonth()] + " " + now.getFullYear();
+          return hours + ':' + now.getMinutes() + " " + ampm + " - " + now.getDate() + " " + month[now.getMonth()] + " " + now.getFullYear();
         };
         var $body = $('body');
-        $body.html('');
-        $('<h1></h1>').text('Twittler by Andrew Phavichitr').appendTo($body);
+        //$body.html('');
         var index = streams.home.length - 1;
+        $body.append('<section></section>').addClass('feed');
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message + currentDateTime());
-          $tweet.appendTo($body);
+          $tweet.append('<a href="#">' + '@' + tweet.user + '</a>').addClass(tweet.user).append('<p>' + tweet.message + '</p>');
+          $tweet.append(currentDateTime() + '<br><br>');
+          $('section').append($tweet);
           index -= 1;
         }
 
+        $('')
       });
 
     </script>
