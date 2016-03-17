@@ -8,32 +8,9 @@
   </head>
   <body>
     <h1>Twittler by Andrew Phavichitr</h1>
-    <script>
-
-      $(document).ready(function(){
-        var currentDateTime = function() {
-          var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-          var now = new Date();
-          var hours = now.getHours() % 12 || 12;
-          var ampm = hours >= 12 ? 'PM' : 'AM';
-          return hours + ':' + now.getMinutes() + " " + ampm + " - " + now.getDate() + " " + month[now.getMonth()] + " " + now.getFullYear();
-        };
-        var $body = $('body');
-        //$body.html('');
-        var index = streams.home.length - 1;
-        $body.append('<section></section>').addClass('feed');
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.append('<a href="#">' + '@' + tweet.user + '</a>').addClass(tweet.user).append('<p>' + tweet.message + '</p>');
-          $tweet.append(currentDateTime() + '<br><br>');
-          $('section').append($tweet);
-          index -= 1;
-        }
-
-        $('')
-      });
-
-    </script>
+    <section class="feed">
+      <button class="new" type="button">Show New Tweets</button>
+    </section>
+    <script src="feed.js"></script>
   </body>
 </html>
