@@ -13,11 +13,15 @@ $(document).ready(function(){
 
   // Display tweets on feed
   var display = function() {
+    $('#return').hide();
+    $('#new').show();
+    $('div').closest('.feed').html('');
+
     while(index >= 0){
       var tweet = streams.home[index];
       var $tweet = $('<div></div>');
 
-      $tweet.append('<a href="#" class="' + tweet.user + '">' + '@' + tweet.user + '</a>');
+      $tweet.append('<a href="#" class="users" data-user="' + tweet.user + '">' + '@' + tweet.user + '</a>');
       $tweet.append('<p>' + tweet.message + '</p><p>' + formatDate(tweet.created_at) + '</p>');
       $('section').closest('.feed').append($tweet);
       index -= 1;
@@ -32,33 +36,40 @@ $(document).ready(function(){
       var tweet = streams.home[feedIndex];
       var $tweet = $('<div></div>');
 
-      $tweet.append('<a href="#" class="' + tweet.user + '">' + '@' + tweet.user + '</a>');
+      $tweet.append('<a href="#" class="users" data-user="' + tweet.user + '">' + '@' + tweet.user + '</a>');
       $tweet.append('<p>' + tweet.message + '</p><p>' + formatDate(tweet.created_at) + '</p>');
       $('section').closest('.feed').prepend($tweet);
       feedIndex += 1;
     }
   };
 
-  // Click on show new tweets button
-  $('button').on('click', function() {
-    update();
-  });
+  display();
 
   // Click on user's link and retrieve all tweets from that user
-  $('a').on('click', function() {
-    $('div').html('');
-    //$('div').empty();
-    var $user = $(this).attr('class');
+  $('section').on('click', '.users', function() {
+    $('#new').hide();
+    $('#return').show();
+    $('div').closest('.feed').html('');
+
+    var $user = $(this).data('user');
     var index = streams.users[$user].length - 1;
     while(index >= 0){
       var tweet = streams.users[$user][index];
       var $tweet = $('<div></div>');
-      $tweet.append('<a href="#" class="' + tweet.user + '">' + '@' + tweet.user + '</a>');
+      $tweet.append('<a href="#" class="users" data-user="' + tweet.user + '">' + '@' + tweet.user + '</a>');
       $tweet.append('<p>' + tweet.message + '</p><p>' + formatDate(tweet.created_at) + '</p>');
       $('section').append($tweet);
       index -= 1;
     }
   });
 
-  display();
+  // Click on show new tweets button
+  $('.buttons').on('click', '#new', function() {
+    update();
+  });
+
+  // Return to homepage
+  $('.buttons').on('click', '#return', function() {
+    display();
+  })
 });

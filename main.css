@@ -3,10 +3,45 @@ body {
 }
 
 h1 {
-  font: bold 30px "Gotham Narrow";
+  font: bold 30px "Lucida Grande";
   color: #fff;
+  text-align: center;
+}
+
+section {
+  position: relative;
 }
 
 div {
-  font: 14px "Gotham Narrow";
+  font: 14px "Lucida Grande";
+  color: #292f33;
+  border-bottom: 1px solid #fff;
+  position: relative;
+  width: 400px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.buttons{
+  border: none;
+  text-align: center;
+}
+
+button {
+  background-color: #fff;
+  color: black;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:visited {
+  color: #292f33;
 }
